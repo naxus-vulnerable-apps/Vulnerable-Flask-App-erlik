@@ -1,0 +1,73 @@
+Summary:
+- Naxus was able to find all the vulnerabilities auditing the exposed assets
+- Semgrep found almos all the vulnerabilities, lacked the ones that were more "complex" (DoS) or depeded on the context (the hardcoded credentials)
+
+
+
+
+# SQL Injection -- Naxus -- Semgrep
+@app.route("/user/<string:name>")
+def search_user(name):
+
+# XSS -- Naxus (when asked) -- semgrep
+@app.route("/welcome/<string:name>")
+def welcome(name):
+
+@app.route("/welcome2/<string:name>")
+def welcome2(name):
+
+
+# SSTI -- Naxus -- semgrep
+@app.route("/hello")
+def hello_ssti():
+
+# RCE -- Naxus -- semgrep
+@app.route("/get_users")
+def get_users():
+
+# Aritrary File Read -- Naxus -- semgrep
+@app.route("/read_file")
+def read_file():
+
+
+# RCE via deserialization -- Naxus -- semgrep
+@app.route("/deserialization/")
+def deserialization():
+
+
+# RCE - Command Injection -- Naxus
+@app.route("/run_file")
+def run_file():
+
+
+# File Upload -- semgrep
+@app.route("/create_file")
+def create_file():
+
+
+# DoS -- Naxus asking for the function (without more info)
+@app.route('/factorial/<int:n>')
+def factroial(n:int):
+
+# Hardcoded creds -- Naxus
+@app.route('/login',methods=["GET"])
+def login():
+
+
+# Add header -- Naxus
+@app.route('/route')
+def route():
+
+# Add data to logs -- Naxus
+@app.route('/logs')
+def ImproperOutputNeutralizationforLogs():
+
+
+# Redos -- Naxus... and also naxus asking for the function (without more info)
+@app.route("/user_pass_control")
+def user_pass_control():
+
+
+# Arbitrary file upload -- Naxus
+@app.route('/upload', methods = ['GET','POST'])
+def uploadfile():
